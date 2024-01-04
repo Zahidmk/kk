@@ -1,0 +1,30 @@
+.cashcard {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #fff;
+  margin: 20px 20px;
+  border-radius: 10px;
+  height: 100px;
+}
+.CashCard_inner {
+  color: #000;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.CashCard_inner h3 {
+  font-size: 14px;
+}
+.CashCard_inner span {
+  font-size: 24px;
+  font-weight: 700;
+}
+.cashcard_h3_exp,.cashcard_h3_repay{
+    color: #707070
+}
+.cashcard_span_repay{
+    color: #C2203B;
+}
+.cashcard_span_exp{
+    color: #34A853;
+}

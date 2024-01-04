@@ -1,8 +1,31 @@
 .topbg{
-    background-color:#22843C ;
+    background-image: url(../assets/header_bg.svg);
+    background-color:#33b856 ;
     width: 100%;
-    height: 350px;
+    height: 250px;
+    border-radius: 0 0 15px 15px;
 }
 .header{
     color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    padding-top: 30px;
+}
+.btn_header{
+    background-color: unset;
+    position: absolute;
+    right: 0;
+    top: 20px;
+    outline: none !important;
+    border: none;
+}
+.btn_header:hover{
+    border-color:unset !important; 
+}
+
+.inner_div{
+    display: flex;
+    justify-content: center;
+    position: relative;
 }
