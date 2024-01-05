@@ -12,7 +12,6 @@
   background-image: url(./assets/header_bg.svg);
   background-color: #33b856;
   width: 100%;
-  border-radius: 0 0 15px 15px;
   position: fixed;
   z-index: 999;
 }
@@ -65,11 +64,15 @@
   border: none;
   outline: none !important;
 }
+.login_submit_btn:focus{
+  border: none;
+  outline: none !important;
+}
 
 .login_form h2 {
   color: #33b856;
-  font-size: 28px;
-  letter-spacing: 2px;
+  font-size: 24px;
+  letter-spacing: 1px;
   font-weight: 700;
 }
 
