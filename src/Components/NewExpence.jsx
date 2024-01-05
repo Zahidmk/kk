@@ -1,20 +1,5 @@
-// import React from "react";
 import styles from "./NewExpence.module.css";
 import { FcPlus } from "react-icons/fc";
-
-// function NewExpence() {
-//   return (
-//     <div className={styles.new_exp_btn_div}>
-//         <button className={styles.btn_div_new}>
-//       <FcPlus size={55}/>
-//         </button>
-//     </div>
-//   );
-// }
-
-// export default NewExpence;
-
-// NewExpense.js
 import React, { useState } from "react";
 
 const NewExpense = ({ onAddExpense }) => {
@@ -42,17 +27,29 @@ const NewExpense = ({ onAddExpense }) => {
     setDate("");
   };
 
+  const [iconRotation, setIconRotation] = useState(0);
+
+  const handleButtonClick = () => {
+    setShowForm(!showForm);
+    setIconRotation((prevRotation) => (prevRotation + 45) % 360);
+  };
   return (
     <div className="my-8 ">
       <button
-        className={styles.btn_div_new}
-        onClick={() => setShowForm(!showForm)}
+        className={`${styles.btn_div_new} ${showForm ? styles.rotateIcon : ""}`}
+        onClick={handleButtonClick}
       >
-        <FcPlus size={55} />
+      <FcPlus
+        size={55}
+        style={{
+          transform: `rotate(${iconRotation}deg)`,
+          color: 'red',
+          transition: 'transform 0.3s ease-in-out',
+        }}
+      />
       </button>
       {showForm && (
-      <div className={styles.NewExpense_div}>
-        
+        <div className={styles.NewExpense_div}>
           <form>
             <label>
               Expense Type:
@@ -99,8 +96,7 @@ const NewExpense = ({ onAddExpense }) => {
               Add Expense
             </button>
           </form>
-        
-      </div>
+        </div>
       )}
     </div>
   );

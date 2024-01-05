@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./ExpenceCalc.module.css";
-import ExpenseForm from "./ExpenseForm";
 
 function ExpenceCalc() {
   return (

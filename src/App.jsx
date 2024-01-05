@@ -14,7 +14,7 @@ function App() {
     <>
       <main className=" flex gap-8 flex-col	 flex">
         <Top />
-        <ExpenceCalc />
+        <ExpenceCalc/>
         <NewExpence onAddExpense={addExpense} />
       </main>
     </>
