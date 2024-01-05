@@ -24,9 +24,9 @@ function Top() {
           </svg>
         </button>
       </div>
-      <Calender />
-      <CashCard />
-    </div>
+      <Calender/>
+      <CashCard/>
+          </div>
   );
 }
 
