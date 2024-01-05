@@ -1,0 +1,42 @@
+.btn_div_new {
+  background-color: unset;
+  border: unset;
+  outline: unset;
+  position: fixed;
+  bottom: 15px;
+  left: 50%;
+  z-index: 999999;
+  transform: translate(-50%, -50%);
+}
+button:hover {
+  border-color: unset !important;
+}
+.new_exp_btn_div {
+  position: relative;
+}
+.btn_plus {
+  width: 60px;
+}
+.NewExpense_div {
+  z-index: 9999;
+  position: fixed;
+  bottom: -30px;
+  display: flex;
+  padding: 30px;
+  flex-direction: column;
+  width: 95%;
+  height: 350px;
+  background-color: #caffcc;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+  color: #000;
+  text-align: center;
+}
+
+.NewExpense_div h2{
+    font-size: 18px;
+    font-weight: 600;
+    color: #34A853;
+    margin: 5px ;
+}

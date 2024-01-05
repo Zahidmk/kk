@@ -1,0 +1,32 @@
+.ExpenceCalc_h3 {
+  color: #22843c;
+}
+.expence_main_div {
+  padding: 30px;
+  position: relative;
+  top: 250px;
+}
+.expence_display {
+  width: 100%;
+  height: 70px;
+  margin: 20px 0;
+  background-color: #22843c27;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.expence_display h3 {
+  color: #000;
+  margin-left: 20px;
+}
+.exp_name {
+  color: #afafaf;
+  margin-left: 20px;
+}
+.exp_price {
+  margin-right: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+}

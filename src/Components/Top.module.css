@@ -4,6 +4,8 @@
     width: 100%;
     height: 250px;
     border-radius: 0 0 15px 15px;
+    position: fixed;
+    z-index: 999;
 }
 .header{
     color: #fff;
