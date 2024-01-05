@@ -100,8 +100,8 @@ const NewExpense = ({ onAddExpense }) => {
               onClick={handleAddExpense}
               style={{
                 backgroundColor: "#ffff",
-                border:"none",
-                color:"#34A853",
+                border: "none",
+                color: "#34A853",
                 transition: "transform 0.3s ease-in-out",
               }}
             >
