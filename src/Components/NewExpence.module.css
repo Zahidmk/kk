@@ -1,12 +1,12 @@
 .btn_div_new {
   background-color: unset;
-  border: unset;
-  outline: unset;
   position: fixed;
   bottom: 15px;
   left: 50%;
   z-index: 999999;
   transform: translate(-50%, -50%);
+  outline: none !important;
+  border: none;
 }
 button:hover {
   border-color: unset !important;
@@ -20,12 +20,13 @@ button:hover {
 .NewExpense_div {
   z-index: 9999;
   position: fixed;
-  bottom: -30px;
+  bottom: -90px;
   display: flex;
   padding: 30px;
   flex-direction: column;
   width: 95%;
-  height: 350px;
+  min-height: 350px;
+  max-height: max-content;
   background-color: #caffcc;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -39,4 +40,28 @@ button:hover {
     font-weight: 600;
     color: #34A853;
     margin: 5px ;
+}
+.exp_form div{
+    display: grid;
+    grid-template-columns: 30% auto;
+    gap: 20px;
+}
+.exp_form label{
+    font-size: 14px;
+    align-items: center;
+    display: flex;
+    gap: 50px;
+    width: 100%;
+    font-weight: 600;
+}
+.exp_form input,.exp_form select{
+    padding: 5px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin-left: 20px ;
+    width: 90%;
+
+}
+.exp_form button{
+    align-items: center;
 }
