@@ -25,10 +25,18 @@ button:hover {
   padding: 30px;
   flex-direction: column;
   width: 95%;
-  height: 250px;
+  height: 350px;
   background-color: #caffcc;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 20px;
   color: #000;
+  text-align: center;
+}
+
+.NewExpense_div h2{
+    font-size: 18px;
+    font-weight: 600;
+    color: #34A853;
+    margin: 5px ;
 }

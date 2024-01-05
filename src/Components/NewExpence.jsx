@@ -1,6 +1,7 @@
 import styles from "./NewExpence.module.css";
 import { FcPlus } from "react-icons/fc";
 import React, { useState } from "react";
+import { MdCloudUpload } from "react-icons/md";
 
 const NewExpense = ({ onAddExpense }) => {
   const [showForm, setShowForm] = useState(false);
@@ -39,17 +40,18 @@ const NewExpense = ({ onAddExpense }) => {
         className={`${styles.btn_div_new} ${showForm ? styles.rotateIcon : ""}`}
         onClick={handleButtonClick}
       >
-      <FcPlus
-        size={55}
-        style={{
-          transform: `rotate(${iconRotation}deg)`,
-          color: 'red',
-          transition: 'transform 0.3s ease-in-out',
-        }}
-      />
+        <FcPlus
+          size={55}
+          style={{
+            transform: `rotate(${iconRotation}deg)`,
+            color: "red",
+            transition: "transform 0.3s ease-in-out",
+          }}
+        />
       </button>
       {showForm && (
         <div className={styles.NewExpense_div}>
+          <h2>Add the Expences</h2>
           <form>
             <label>
               Expense Type:
@@ -92,8 +94,19 @@ const NewExpense = ({ onAddExpense }) => {
               />
             </label>
 
-            <button type="button" onClick={handleAddExpense}>
-              Add Expense
+            <button
+              className="flex gap-3"
+              type="button"
+              onClick={handleAddExpense}
+              style={{
+                backgroundColor: "#ffff",
+                border:"none",
+                color:"#34A853",
+                transition: "transform 0.3s ease-in-out",
+              }}
+            >
+              Add
+              <MdCloudUpload size={24} />
             </button>
           </form>
         </div>
