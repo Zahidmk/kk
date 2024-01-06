@@ -15,7 +15,7 @@ function ExpenceCalc() {
           id: doc.id,
           ...doc.data(),
         }));
-          expensesData.sort((a, b) => new Date(b.date) - new Date(a.date));
+        expensesData.sort((a, b) => new Date(b.date) - new Date(a.date));
 
         // Group expenses by date
         const groupedExpenses = expensesData.reduce((acc, expense) => {
@@ -48,9 +48,9 @@ function ExpenceCalc() {
 
   return (
     <div className={styles.expence_main_div}>
+
       {Object.keys(expensesByDate).map((date) => (
         <div key={date}>
-            {console.log(expensesByDate)}
           <h3 className={styles.ExpenceCalc_h3}>{date}</h3>
           {expensesByDate[date].map((expense) => (
             <div
@@ -70,6 +70,7 @@ function ExpenceCalc() {
               </div>
             </div>
           ))}
+          
         </div>
       ))}
     </div>
