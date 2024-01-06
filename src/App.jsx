@@ -30,7 +30,7 @@ function App() {
 
   // Display a loading indicator while checking authentication state
   if (isCheckingAuth) {
-    return <p>Loading...</p>;
+    return <div className='root_div_loading'><p className='loading_p'>Loading...</p></div>;
   }
 
   return (

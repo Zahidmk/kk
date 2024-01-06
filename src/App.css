@@ -18,14 +18,27 @@
 }
 .login_form {
   background-color: #fff;
-  width: 88%;
+  width: 350px;
   padding: 24px;
   border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .login_form_controls {
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+@media only screen and (max-width: 767px) {
+.login_form_controls{
+  width: 100%;
+}
+.login_form {
+  width: 88%;
+
+}
 }
 
 .login_form_input {
@@ -78,4 +91,20 @@
   font-size: 16px;
   font-weight: 400;
   padding-bottom: 20px;
+}
+
+.loading_p{
+    color: #08af34;
+    font-size: 32px;
+    text-align: center;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+}
+.root_div_loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
 }

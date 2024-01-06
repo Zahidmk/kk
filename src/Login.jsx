@@ -3,6 +3,7 @@ import { auth } from "./firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
+import logo from "../src/assets/kk-logo.svg"
 
 const Login = () => {
   const [email, setEmail] = useState("jestinvj4@gmail.com");
@@ -42,6 +43,7 @@ const Login = () => {
   return (
     <div className="login_form_sec">
       <div className="login_form">
+        <img src={logo} alt="" style={{width: '150px'}} />
         <h2>Welcome to KK</h2>
         <p>Sign in to continue</p>
         <form onSubmit={handleEmailLogin} className="login_form_controls">
