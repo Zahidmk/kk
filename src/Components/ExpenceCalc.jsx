@@ -15,7 +15,7 @@ function ExpenceCalc() {
           id: doc.id,
           ...doc.data(),
         }));
-        //   expensesData.sort((a, b) => new Date(b.date) - new Date(a.date));
+          expensesData.sort((a, b) => new Date(b.date) - new Date(a.date));
 
         // Group expenses by date
         const groupedExpenses = expensesData.reduce((acc, expense) => {
