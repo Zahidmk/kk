@@ -2,7 +2,7 @@
   font-family: poppins;
 }
 
-.login_form_sec {
+.login_form_sec,.signup_form_sec {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -16,7 +16,7 @@
   position: fixed;
   z-index: 999;
 }
-.login_form {
+.login_form,.signup_form {
   background-color: #fff;
   width: 350px;
   padding: 24px;
@@ -26,13 +26,13 @@
   justify-content: center;
   align-items: center;
 }
-.login_form_controls {
+.login_form_controls ,.signup_form_controls{
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 @media only screen and (max-width: 767px) {
-.login_form_controls{
+.login_form_controls,.signup_form_controls{
   width: 100%;
 }
 .login_form {
@@ -41,7 +41,7 @@
 }
 }
 
-.login_form_input {
+.login_form_input,.signup_form_input {
   background-color: #fff;
   border: 1px solid #33b856;
   padding: 14px;
@@ -50,43 +50,43 @@
   font-size: 16px;
 }
 
-.login_form_input:focus-visible {
+.login_form_input:focus-visible,.signup_form_input:focus-visible {
   outline: #08af34 !important;
   border: 1px solid #08af34 !important;
   box-shadow: none;
 }
 
-.login_form_label {
+.login_form_label,.signup_form_label {
   color: #33b856;
   padding-bottom: 8px;
 }
 
-.login_submit_btn {
+.login_submit_btn,.signup_submit_btn {
   background-color: #33b856 !important;
   border-radius: 24px;
   margin-top: 8px;
   color: #fff;
   padding: 12px 12px;
 }
-.login_submit_btn :hover {
+.login_submit_btn :hover,.signup_submit_btn:hover {
   border: none;
   outline: none;
   border-color: unset !important;
   box-shadow: none;
 }
-.login_submit_btn :focus-visible {
+.login_submit_btn :focus-visible ,.signup_submit_btn:focus-visible {
   border: none;
   outline: none !important;
 }
 
-.login_form h2 {
+.login_form h2,.signup_form h2 {
   color: #33b856;
   font-size: 28px;
   letter-spacing: 2px;
   font-weight: 700;
 }
 
-.login_form p {
+.login_form p ,.signup_form p{
   color: #888;
   font-size: 16px;
   font-weight: 400;

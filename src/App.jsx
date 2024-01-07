@@ -4,6 +4,7 @@ import Top from './Components/Top';
 import ExpenceCalc from './Components/ExpenceCalc';
 import NewExpence from './Components/NewExpence';
 import Login from './Login';
+import Signup from './Signup'; // Import the Signup component directly
 import { auth } from './firebase';
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} /> {/* Add this line for the signup page */}
         <Route
           path="/home"
           element={
