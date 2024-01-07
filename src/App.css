@@ -35,7 +35,7 @@
 .login_form_controls,.signup_form_controls{
   width: 100%;
 }
-.login_form {
+.login_form,.signup_form {
   width: 88%;
 
 }
