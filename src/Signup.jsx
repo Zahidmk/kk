@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { auth } from "./firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import "./App.css";
 import logo from "../src/assets/kk-logo.svg";
 
@@ -91,6 +91,9 @@ const Signup = () => {
           <button type="submit" className="signup_submit_btn" disabled={loading}>
             {loading ? "Signing up..." : "Sign Up"}
           </button>
+          <p className="login-link">
+            Already have an account? <Link to="/login">Login</Link>
+          </p>
         </form>
       </div>
     </div>
