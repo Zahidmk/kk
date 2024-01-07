@@ -48,8 +48,7 @@ function ExpenceCalc() {
 
   return (
     <div className={styles.expence_main_div}>
-
-      {Object.keys(expensesByDate).map((date) => (
+            {Object.keys(expensesByDate).map((date) => (
         <div key={date}>
           <h3 className={styles.ExpenceCalc_h3}>{date}</h3>
           {expensesByDate[date].map((expense) => (
