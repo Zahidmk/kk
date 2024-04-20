@@ -1,7 +1,15 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc,updateDoc, doc } from "firebase/firestore";
-import { getAuth } from 'firebase/auth';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  updateDoc,
+  doc,
+  onSnapshot,
+  deleteDoc,
+} from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB_zJ1c-MikPvyNCMa9JKWMIFR4ulwPzIY",
@@ -21,7 +29,20 @@ const db = getFirestore(app);
 
 // Get a reference to the Authentication module
 const auth = getAuth(app);
-const storage = getStorage(app); 
+const storage = getStorage(app);
 // Export the necessary Firebase modules
-export { db, auth, getFirestore, ref, uploadBytes,updateDoc, doc, collection, getDownloadURL,addDoc,storage };
-
+export {
+  db,
+  auth,
+  getFirestore,
+  ref,
+  uploadBytes,
+  updateDoc,
+  doc,
+  collection,
+  getDownloadURL,
+  addDoc,
+  storage,
+  onSnapshot,
+  deleteDoc,
+};
