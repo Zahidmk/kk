@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./CashCard.module.css";
 import { onSnapshot, collection } from "firebase/firestore";
 import { db } from "./../../firebase";
 
 function CashCard() {
   const [totalExpense, setTotalExpense] = useState(0);
+  const [remainingExpense, setRemainingExpense] = useState(0);
+  const totalExpenseRef = useRef(null);
+  const remainingExpenseRef = useRef(null);
+  const thresholdWidth = 200; // Adjust the value as needed
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,16 +49,55 @@ function CashCard() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    // Calculate remaining expense
+    const remainingExpenseAmount = totalExpense - remainingExpense;
+
+    setRemainingExpense(remainingExpenseAmount.toFixed(2));
+  }, [totalExpense]);
+
+  useEffect(() => {
+    const adjustFontSize = (ref) => {
+      if (ref.current) {
+        const divWidth = ref.current.offsetWidth;
+        const spanElement = ref.current.querySelector("span");
+        if (divWidth < thresholdWidth) {
+          spanElement.style.fontSize = "smaller";
+        } else {
+          spanElement.style.fontSize = "inherit";
+        }
+      }
+    };
+
+    adjustFontSize(totalExpenseRef);
+    adjustFontSize(remainingExpenseRef);
+
+    // Re-adjust font size on window resize
+    window.addEventListener("resize", () => {
+      adjustFontSize(totalExpenseRef);
+      adjustFontSize(remainingExpenseRef);
+    });
+
+    return () => {
+      window.removeEventListener("resize", () => {
+        adjustFontSize(totalExpenseRef);
+        adjustFontSize(remainingExpenseRef);
+      });
+    };
+  }, [totalExpense, remainingExpense]); // Include totalExpense and remainingExpense in dependency array
+
   return (
     <div className={styles.cashcard}>
-      <div className={styles.CashCard_inner}>
+      <div className={styles.CashCard_inner} ref={totalExpenseRef}>
         <h3 className={styles.cashcard_h3_exp}>Total Expense</h3>
         <span className={styles.cashcard_span_exp}>&#8377; {totalExpense}</span>
       </div>
       {/* Remaining Payment component */}
-      <div className={styles.CashCard_inner}>
+      <div className={styles.CashCard_inner} ref={remainingExpenseRef}>
         <h3 className={styles.cashcard_h3_repay}>Remaining Payment</h3>
-        <span className={styles.cashcard_span_repay}>&#8377; {totalExpense}</span>
+        <span className={styles.cashcard_span_repay}>
+          &#8377; {remainingExpense}
+        </span>
       </div>
     </div>
   );
