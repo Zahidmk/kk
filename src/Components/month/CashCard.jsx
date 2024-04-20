@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useRef } from "react"; // Added 'useRef' import
+// CashCard.jsx
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./CashCard.module.css";
 import { onSnapshot, collection } from "firebase/firestore";
 import { db } from "./../../firebase";
 
-function CashCard() {
+function CashCard({ selectedMonth }) {
   const [totalExpense, setTotalExpense] = useState(0);
-  const [remainingExpense, setRemainingExpense] = useState(0); // Added 'remainingExpense' state
-  const totalExpenseRef = useRef(null); // Added 'totalExpenseRef' useRef
-  const remainingExpenseRef = useRef(null); // Added 'remainingExpenseRef' useRef
+  const [remainingExpense, setRemainingExpense] = useState(0);
+  const totalExpenseRef = useRef(null);
+  const remainingExpenseRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,20 +20,18 @@ function CashCard() {
             ...doc.data(),
           }));
 
-          // Get the current month and year
-          const today = new Date();
-          const currentMonth = today.getMonth() + 1; // Months are 0-based
-          const currentYear = today.getFullYear();
+          // Filter expenses for the selected month
+          const filteredExpenses = expensesData.filter((expense) => {
+            const expenseMonth = new Date(expense.date).getMonth() + 1;
+            return (
+              (selectedMonth === "this" &&
+                expenseMonth === new Date().getMonth() + 1) ||
+              (selectedMonth === "last" &&
+                expenseMonth === new Date().getMonth())
+            );
+          });
 
-          // Filter expenses for the current month and year
-          const currentMonthExpenses = expensesData.filter(
-            (expense) =>
-              new Date(expense.date).getMonth() + 1 === currentMonth &&
-              new Date(expense.date).getFullYear() === currentYear
-          );
-
-          // Calculate the sum of amounts for the current month
-          const sum = currentMonthExpenses.reduce(
+          const sum = filteredExpenses.reduce(
             (acc, expense) => acc + parseFloat(expense.amount),
             0
           );
@@ -46,8 +45,7 @@ function CashCard() {
     };
 
     fetchData();
-  }, []); // Removed the dependency array to run only once
-
+  }, [selectedMonth]);
   // Function to update remaining expense when repayment is made
   const handleRepayment = (repaymentAmount) => {
     const updatedRemaining = totalExpense - repaymentAmount;
@@ -81,6 +79,7 @@ function CashCard() {
 
   return (
     <div className={styles.cashcard}>
+      {/* Total Expense component */}
       <div className={styles.CashCard_inner} ref={totalExpenseRef}>
         <h3 className={styles.cashcard_h3_exp}>Total Expense</h3>
         <span className={styles.cashcard_span_exp} style={{ fontSize: "24px" }}>

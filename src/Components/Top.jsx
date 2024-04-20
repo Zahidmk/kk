@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./Top.module.css";
 import Calender from "./month/Calender";
 import CashCard from "./month/CashCard";
-import { auth } from '../firebase'; // Adjust the import path as needed
+import { auth } from "../firebase"; // Adjust the import path as needed
 
 function Top() {
   const [showPopup, setShowPopup] = useState(false);
@@ -47,7 +47,6 @@ function Top() {
         </button>
       </div>
       <Calender />
-      <CashCard />
 
       {showPopup && (
         <div className={styles.logoutPopup}>
