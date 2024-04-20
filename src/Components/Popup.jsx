@@ -98,7 +98,7 @@ const Popup = ({ selectedExpense, onClose }) => {
           />
         </div>
         <img
-          href={editedExpense.imageUrl}
+          src={editedExpense.imageUrl} // Change 'href' to 'src'
           className="o object-cover w-20 h-24"
         />
         <div>
