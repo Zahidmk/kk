@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import styles from "./ExpenceCalc.module.css";
 import { getFirestore, collection, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase"; // Update the path accordingly
+import Popup from "./Popup"; // Import the Popup component
 
 function ExpenceCalc() {
   const [expensesByDate, setExpensesByDate] = useState({});
+  const [selectedExpense, setSelectedExpense] = useState(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = () => {
@@ -46,9 +49,18 @@ function ExpenceCalc() {
     }
   };
 
+  const handleExpenseClick = (expense) => {
+    setSelectedExpense(expense);
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
   return (
     <div className={styles.expence_main_div}>
-            {Object.keys(expensesByDate).map((date) => (
+      {Object.keys(expensesByDate).map((date) => (
         <div key={date}>
           <h3 className={styles.ExpenceCalc_h3}>{date}</h3>
           {expensesByDate[date].map((expense) => (
@@ -56,6 +68,7 @@ function ExpenceCalc() {
               key={expense.id}
               className={styles.expence_display}
               style={{ backgroundColor: getDivColor(expense.amount) }}
+              onClick={() => handleExpenseClick(expense)} // Add onClick handler
             >
               <div className={styles.expence_display_flex}>
                 <h3>IN NO : {expense.invoice}</h3>
@@ -69,9 +82,11 @@ function ExpenceCalc() {
               </div>
             </div>
           ))}
-          
         </div>
       ))}
+      {isPopupOpen && (
+        <Popup selectedExpense={selectedExpense} onClose={handleClosePopup} />
+      )}
     </div>
   );
 }

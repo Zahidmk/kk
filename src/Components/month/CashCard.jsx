@@ -1,14 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react"; // Added 'useRef' import
 import styles from "./CashCard.module.css";
 import { onSnapshot, collection } from "firebase/firestore";
 import { db } from "./../../firebase";
 
 function CashCard() {
   const [totalExpense, setTotalExpense] = useState(0);
-  const [remainingExpense, setRemainingExpense] = useState(0);
-  const totalExpenseRef = useRef(null);
-  const remainingExpenseRef = useRef(null);
-  const thresholdWidth = 200; // Adjust the value as needed
+  const [remainingExpense, setRemainingExpense] = useState(0); // Added 'remainingExpense' state
+  const totalExpenseRef = useRef(null); // Added 'totalExpenseRef' useRef
+  const remainingExpenseRef = useRef(null); // Added 'remainingExpenseRef' useRef
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,55 +46,54 @@ function CashCard() {
     };
 
     fetchData();
-  }, []);
+  }, []); // Removed the dependency array to run only once
 
-  useEffect(() => {
-    // Calculate remaining expense
-    const remainingExpenseAmount = totalExpense - remainingExpense;
-
-    setRemainingExpense(remainingExpenseAmount.toFixed(2));
-  }, [totalExpense]);
+  // Function to update remaining expense when repayment is made
+  const handleRepayment = (repaymentAmount) => {
+    const updatedRemaining = totalExpense - repaymentAmount;
+    setRemainingExpense(updatedRemaining.toFixed(2));
+  };
 
   useEffect(() => {
     const adjustFontSize = (ref) => {
       if (ref.current) {
-        const divWidth = ref.current.offsetWidth;
         const spanElement = ref.current.querySelector("span");
-        if (divWidth < thresholdWidth) {
-          spanElement.style.fontSize = "smaller";
-        } else {
-          spanElement.style.fontSize = "inherit";
-        }
+        spanElement.style.fontSize = "24px";
       }
     };
 
     adjustFontSize(totalExpenseRef);
     adjustFontSize(remainingExpenseRef);
 
-    // Re-adjust font size on window resize
-    window.addEventListener("resize", () => {
+    const handleResize = () => {
+      // Changed the function name to 'handleResize'
       adjustFontSize(totalExpenseRef);
       adjustFontSize(remainingExpenseRef);
-    });
+    };
+
+    // Event listener for window resize
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize", () => {
-        adjustFontSize(totalExpenseRef);
-        adjustFontSize(remainingExpenseRef);
-      });
+      window.removeEventListener("resize", handleResize);
     };
-  }, [totalExpense, remainingExpense]); // Include totalExpense and remainingExpense in dependency array
+  }, [totalExpense, remainingExpense]); // Added 'totalExpense' and 'remainingExpense' to the dependency array
 
   return (
     <div className={styles.cashcard}>
       <div className={styles.CashCard_inner} ref={totalExpenseRef}>
         <h3 className={styles.cashcard_h3_exp}>Total Expense</h3>
-        <span className={styles.cashcard_span_exp}>&#8377; {totalExpense}</span>
+        <span className={styles.cashcard_span_exp} style={{ fontSize: "24px" }}>
+          &#8377; {totalExpense}
+        </span>
       </div>
       {/* Remaining Payment component */}
       <div className={styles.CashCard_inner} ref={remainingExpenseRef}>
         <h3 className={styles.cashcard_h3_repay}>Remaining Payment</h3>
-        <span className={styles.cashcard_span_repay}>
+        <span
+          className={styles.cashcard_span_repay}
+          style={{ fontSize: "24px" }}
+        >
           &#8377; {remainingExpense}
         </span>
       </div>

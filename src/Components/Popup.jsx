@@ -1,33 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Popup.module.css";
-import { db, doc, updateDoc } from "../firebase"; // Import the necessary Firebase functions
+import { db, doc, updateDoc, deleteDoc } from "../firebase"; // Import the necessary Firebase functions
 
-const Popup = ({ invoice, amount, imageUrl, date, onClose }) => {
+const Popup = ({ selectedExpense, onClose }) => {
   const [editable, setEditable] = useState(false);
+  const [editedExpense, setEditedExpense] = useState({});
+
+  // Update the edited expense state when the selected expense changes
+  useEffect(() => {
+    setEditedExpense(selectedExpense);
+  }, [selectedExpense]);
 
   const handleEditClick = async () => {
     try {
       setEditable(!editable);
-      console.log("Selected Expense in Edit Click:", selectedExpense);
-
-
-      console.log("Selected Expense:", selectedExpense);
-
-      // Check if selectedExpense is defined and has the required properties
+      // Check if editedExpense has the required properties
       if (
-        selectedExpense &&
-        selectedExpense.id &&
-        selectedExpense.invoice &&
-        selectedExpense.amount &&
-        selectedExpense.date
+        editedExpense &&
+        editedExpense.id &&
+        editedExpense.invoice &&
+        editedExpense.amount &&
+        editedExpense.date &&
+        editedExpense.imageUrl
       ) {
-        const expenseRef = doc(db, "expenses", selectedExpense.id);
+        const expenseRef = doc(db, "expenses", editedExpense.id);
 
         // Update the document based on the fields you want to change
         await updateDoc(expenseRef, {
-          invoice: selectedExpense.invoice,
-          amount: selectedExpense.amount,
-          date: selectedExpense.date,
+          invoice: editedExpense.invoice,
+          amount: editedExpense.amount,
+          date: editedExpense.date,
           // Add more fields as needed
         });
       }
@@ -36,8 +38,26 @@ const Popup = ({ invoice, amount, imageUrl, date, onClose }) => {
     }
   };
 
-  
+  const handleDeleteClick = async () => {
+    try {
+      if (editedExpense && editedExpense.id) {
+        const expenseRef = doc(db, "expenses", editedExpense.id);
+        await deleteDoc(expenseRef);
+        onClose(); // Close the popup after deletion
+      }
+    } catch (error) {
+      console.error("Error deleting expense:", error);
+    }
+  };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditedExpense({
+      ...editedExpense,
+      [name]: value,
+    });
+  };
+  console.log(editedExpense.imageUrl);
   return (
     <div className={styles.popup_overlay}>
       <div className={styles.popup_content}>
@@ -49,38 +69,41 @@ const Popup = ({ invoice, amount, imageUrl, date, onClose }) => {
           <label>Invoice No:</label>
           <input
             type="text"
-            value={invoice || ""}  // Ensure to handle null or undefined values
+            name="invoice"
+            value={editedExpense.invoice || ""}
             readOnly={!editable}
+            onChange={handleInputChange}
           />
         </div>
         <div>
           <label>Amount:</label>
           <input
             type="text"
-            value={amount || ""}
+            name="amount"
+            value={editedExpense.amount || ""}
             readOnly={!editable}
-          />
-        </div>
-        <div>
-          <label>Image:</label>
-          <img
-            src={imageUrl || ""}
-            alt="Expense"
+            onChange={handleInputChange}
           />
         </div>
         <div>
           <label>Date:</label>
           <input
             type="date"
-            value={date || ""}
+            name="date"
+            value={editedExpense.date || ""}
             readOnly={!editable}
+            onChange={handleInputChange}
           />
         </div>
+        <img
+          href={editedExpense.imageUrl}
+          className="o object-cover w-20 h-24"
+        />
         <div>
           <button onClick={handleEditClick}>
             {editable ? "Save" : "Edit"}
           </button>
-          <button>Delete</button>
+          {!editable && <button onClick={handleDeleteClick}>Delete</button>}
         </div>
       </div>
     </div>
