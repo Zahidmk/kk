@@ -30,6 +30,8 @@ const Popup = ({ selectedExpense, onClose }) => {
           invoice: editedExpense.invoice,
           amount: editedExpense.amount,
           date: editedExpense.date,
+          image: editedExpense.imageUrl,
+
           // Add more fields as needed
         });
       }
