@@ -72,8 +72,6 @@ function ExpenceCalc() {
             >
               <div className={styles.expence_display_flex}>
                 <h3>IN NO : {expense.invoice}</h3>
-                <span className={styles.exp_name}>edit</span>
-                <span>delete</span>
               </div>
               <div>
                 <span className={styles.exp_price}>

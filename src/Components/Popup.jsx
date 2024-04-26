@@ -64,7 +64,7 @@ const Popup = ({ selectedExpense, onClose }) => {
     <div className={styles.popup_overlay}>
       <div className={styles.popup_content}>
         <span className={styles.close_button} onClick={onClose}>
-          &times;
+          <i class="ri-close-line"></i>
         </span>
         <h2>{editable ? "Edit" : "View"} Expense</h2>
         <div>

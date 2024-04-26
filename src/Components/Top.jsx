@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import styles from "./Top.module.css";
 import Calender from "./month/Calender";
 import CashCard from "./month/CashCard";
-import { auth } from "../firebase"; // Adjust the import path as needed
+import { DrawerDiv } from "./Drawer";
+import { auth } from "../firebase";
 
 function Top() {
   const [showPopup, setShowPopup] = useState(false);
-
   const handleLogout = () => {
     // Show the confirmation popup
     setShowPopup(true);
+    confirmLogout();
   };
 
   const confirmLogout = () => {
@@ -20,10 +21,9 @@ function Top() {
     setShowPopup(false);
   };
 
-  const cancelLogout = () => {
-    // Hide the confirmation popup if the user cancels
-    setShowPopup(false);
-  };
+  // const cancelLogout = () => {
+  //   setShowPopup(false);
+  // };
 
   return (
     <div className={styles.topbg}>
@@ -45,16 +45,9 @@ function Top() {
             />
           </svg>
         </button>
+        <DrawerDiv showPopup={showPopup} onClose={handleLogout} />
       </div>
       <Calender />
-
-      {showPopup && (
-        <div className={styles.logoutPopup}>
-          <p>Are you sure you want to logout?</p>
-          <button onClick={confirmLogout}>Yes</button>
-          <button onClick={cancelLogout}>No</button>
-        </div>
-      )}
     </div>
   );
 }
