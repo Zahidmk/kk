@@ -85,9 +85,7 @@ const NewExpense = ({ onAddExpense }) => {
   return (
     <div className="my-8">
       <button
-        className={`${styles.btn_div_new} ${
-          showForm ? styles.rotateIcon : ""
-        }`}
+        className={`${styles.btn_div_new} ${showForm ? styles.rotateIcon : ""}`}
         onClick={handleButtonClick}
       >
         {isSaved ? (
@@ -112,7 +110,7 @@ const NewExpense = ({ onAddExpense }) => {
       </button>
       {showForm && (
         <div className={styles.NewExpense_div}>
-          <h2>Add the Expenses</h2>
+          <h2 className="pb-4">Add the Expenses</h2>
 
           <form className={styles.exp_form}>
             <div>
@@ -129,11 +127,7 @@ const NewExpense = ({ onAddExpense }) => {
                 onChange={(e) => setAmount(e.target.value)}
               />
               <label>Date:</label>
-              <input
-                type="date"
-                value={date}
-                onChange={handleDateChange}
-              />
+              <input type="date" value={date} onChange={handleDateChange} />
               <label>Add Bill:</label>
               <input
                 type="file"
@@ -142,7 +136,7 @@ const NewExpense = ({ onAddExpense }) => {
               />
             </div>
             <button
-              className="flex gap-3"
+              className="flex gap-3 mb-4 mt-3 ml-auto"
               type="button"
               onClick={handleAddExpense}
               style={{

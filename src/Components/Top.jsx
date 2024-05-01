@@ -7,10 +7,10 @@ import { auth } from "../firebase";
 
 function Top() {
   const [showPopup, setShowPopup] = useState(false);
-  const handleLogout = () => {
-    // Show the confirmation popup
-    setShowPopup(true);
-    confirmLogout();
+
+  const handleMenu = () => {
+    // Toggle the state to show/hide the DrawerDiv
+    setShowPopup(!showPopup);
   };
 
   const confirmLogout = () => {
@@ -29,7 +29,10 @@ function Top() {
     <div className={styles.topbg}>
       <div className={styles.inner_div}>
         <h1 className={styles.header}>KK Expense</h1>
-        <button className={styles.btn_header} onClick={handleLogout}>
+        {/* <div className="flex min-h-[50vh] items-center justify-center">
+          <Button onClick={() => setIsOpen(true)}>Show right drawer</Button>
+        </div> */}
+        <button className={styles.btn_header} onClick={handleMenu}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -45,7 +48,7 @@ function Top() {
             />
           </svg>
         </button>
-        <DrawerDiv showPopup={showPopup} onClose={handleLogout} />
+        <DrawerDiv showPopup={showPopup} onClose={handleMenu} />
       </div>
       <Calender />
     </div>

@@ -10,6 +10,7 @@
 }
 button:hover {
   border-color: unset !important;
+  background-color: transparent;
 }
 .new_exp_btn_div {
   position: relative;
@@ -27,7 +28,7 @@ button:hover {
   width: 95%;
   min-height: 350px;
   max-height: max-content;
-  background-color: #caffcc;
+  background-color: #9dddad;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 20px;
@@ -38,7 +39,7 @@ button:hover {
 .NewExpense_div h2{
     font-size: 18px;
     font-weight: 600;
-    color: #34A853;
+    color: #22843c;
     margin: 5px ;
 }
 .exp_form div{
