@@ -63,7 +63,7 @@ function Calender() {
         />
         {/* Calendar button */}
       </div>
-      <CashCard selectedMonth={selectedMonth} />{" "}
+      <CashCard selectedMonth={selectedMonth} />
       {/* Pass selectedMonth as prop */}
     </div>
   );
