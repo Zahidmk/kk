@@ -145,7 +145,6 @@ const NewExpense = ({ onAddExpense }) => {
                 color: "#34A853",
                 transition: "transform 0.3s ease-in-out",
                 outline: "none !important",
-                border: "none",
               }}
               disabled={isSaved}
             >
